@@ -1,0 +1,126 @@
+@model LoginViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-reset.css" rel="stylesheet" />
+
+</head>
+<body>
+<section>
+    @Html.AntiForgeryToken()
+    <form id="main-login" asp-controller="Home" asp-action="Index" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+        <!-- Username Textfield -->
+        <div class="form-group">
+            <div class="col-xs-12">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                    <input asp-for="Username" class="form-control big-textfields" type="text" placeholder="Username" />
+                </div>
+            </div>
+        </div>
+        <!-- Password Textfield -->
+        <div class="form-group">
+            <div class="col-xs-12">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input asp-for="Password" class="form-control big-textfields" type="password" placeholder="Password" />
+           
+                </div>
+            </div>
+        </div>
+        <!-- Login Button -->
+        <div class="form-group text-center">
+            <div class="col-xs-12 col-md-12">
+                <input class="btn btn-lg btn-login" data-toggle="popover" data-placement="bottom" data-content="Your Username or Password was incorrect" value="Login" type="submit">
+            </div>
+        </div>
+    </form>
+
+    <!-- Forgot Password Link -->
+    <div class="form-group m-t-30">
+        <div class="col-sm-7 col-md-12 text-center">
+            <a asp-controller="Account" asp-action="RecoverPwd" ><i class="fa fa-lock m-r-5"></i>Forgot your password?</a>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+<section>
+    @Html.AntiForgeryToken()
+    <form id="main-login" asp-controller="Home" asp-action="Index" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+        <!-- Username Textfield -->
+        <div class="form-group">
+            <div class="col-xs-12">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                    <input asp-for="Username" class="form-control big-textfields" type="text" placeholder="Username" />
+                </div>
+            </div>
+        </div>
+        <!-- Password Textfield -->
+        <div class="form-group">
+            <div class="col-xs-12">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input asp-for="Password" class="form-control big-textfields" type="password" placeholder="Password" />
+           
+                </div>
+            </div>
+        </div>
+        <!-- Login Button -->
+        <div class="form-group text-center">
+            <div class="col-xs-12 col-md-12">
+                <input class="btn btn-lg btn-login" data-toggle="popover" data-placement="bottom" data-content="Your Username or Password was incorrect" value="Login" type="submit">
+            </div>
+        </div>
+    </form>
+
+    <!-- Forgot Password Link -->
+    <div class="form-group m-t-30">
+        <div class="col-sm-7 col-md-12 text-center">
+            <a asp-controller="Account" asp-action="RecoverPwd" ><i class="fa fa-lock m-r-5"></i>Forgot your password?</a>
+        </div>
+    </div>
+</section>
+
+
+     <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/wow.min.js"></script>
+    <script src="~/js/jquery.app.js"></script>
+    <script src="~/js/pace.min.js" type="text/javascript"></script>
+    <script src="~/js/jquery.nicescroll.js" type="text/javascript"></script>
+
+    <script src="~/js/site.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script>
+        $('html').on('click', function (e) {
+            $('[data-toggle=popover]').each(function () {
+                // hide any open popovers when the anywhere else in the body is clicked
+                if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                    $(this).popover('hide');
+                }
+            });
+        });
+          /*Reset .isState click when hiding */
+        $('html').on('hidden.bs.popover', function (e) {
+            $(e.target).data("bs.popover").inState.click = false;
+        });
+    </script>
+
+</body>
+</html>
